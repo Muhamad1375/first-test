@@ -1,7 +1,7 @@
 const app = Vue.createApp({
     data() {
         return {
-            oon: 'http://www.google.com',
+            url: 'http://www.google.com',
             showBooks: true,
             title: 'The final Empire1',
             author: 'Brandon Sanderson',
@@ -14,18 +14,22 @@ const app = Vue.createApp({
                     author: 'Brandon Sanderson',
                     age: 45,
                     img: 'assets/1.jpg',
+                    isFav: true,
+
                 },
                 {
                     title: 'The final Empire2',
                     author: 'Brandon Sanderson',
                     age: 45,
                     img: 'assets/2.jpg',
+                    isFav: false,
                 },
                 {
                     title: 'The final Empire3',
                     author: 'Brandon Sanderson',
                     age: 45,
                     img: 'assets/3.jpg',
+                    isFav: true,
                 },
 
                 
@@ -46,10 +50,20 @@ const app = Vue.createApp({
                 console.log(data)
             }
         },
-        handleMouseMove(e) {
-            this.x = e.offsetX;
-            this.y = e.offsetY;
+        P(a) {
+            // this.x = a.offsetX;
+            // this.y = a.offsetY;
+            console.log(a)
+        },
+        toggleFav(book) {
+            book.isFav = !book.isFav
         }
+        
+    },
+    computed: {
+      filteredBooks() {
+            return this.books.filter((book) => book.isFav)
+      }
     }
 })
 
